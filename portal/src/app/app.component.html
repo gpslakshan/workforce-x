@@ -7,3 +7,41 @@
         </div>
     </div>
 </div> -->
+
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened class="sidemenu-container">
+        <div id="logo">Workforce-X</div>
+        <mat-nav-list class="menu-list">
+            <div class="top-content">
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="chartBarIcon"></fa-icon></span>Dashboard</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="employeesIcon"></fa-icon></span>Employees</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="buildingIcon"></fa-icon></span>Departments</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="thunderIcon"></fa-icon></span>Projects</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="mailIcon"></fa-icon></span>Messages</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="eventIcon"></fa-icon></span>Events</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="dollarIcon"></fa-icon></span>Payroll</a>
+            </div>
+
+            <div class="bottom-content">
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="settingsIcon"></fa-icon></span>Settings</a>
+                <a mat-list-item href="#" class="side-menu-item">
+                    <span class="me-3"><fa-icon [icon]="logoutIcon"></fa-icon></span>Logout</a>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <span>Workforce-X</span>
+        </mat-toolbar>
+        Main content
+    </mat-sidenav-content>
+</mat-sidenav-container>
