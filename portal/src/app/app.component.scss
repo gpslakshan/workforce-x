@@ -1,42 +1,58 @@
 @import "../styles.scss";
 
-.example-container {
+mat-sidenav-container {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: #eee;
-}
 
-#logo {
-    padding: 20px 0 40px 0;
-    width: 100%;
-    color: white;
-    font-size: 36px;
-    display: flex;
-    justify-content: center;
-    font-weight: 700;
-}
+    mat-sidenav {
+        background-color: $brand-sidebar-color;
 
-.sidemenu-container {
-    width: 20%;
-    background-color: $brand-sidebar-color;
-}
 
-.menu-list {
-    padding: 10px 0;
-    height: 85%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        mat-nav-list {
+            height: 90%;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
 
-.side-menu-item {
-    color: white;
-    font-size: 18px;
-    font-weight: 300;
-    // width: 100%;
-    // display: flex !important;
-    // justify-content: center;
+            mat-icon {
+                color: white;
+            }
+
+            #logo {
+                font-size: 32px;
+                font-weight: 700;
+                margin-right: 8px;
+                margin-bottom: 12px;
+                margin-top: 35px;
+            }
+
+            .menu-item {
+                margin-left: 8px;
+                font-family: $brand-font-family;
+                color: white;
+                font-weight: 300;
+            }
+
+            .chevron-button {
+                margin-top: 30px;
+                transition: 300ms ease-in-out;
+                transform: rotate(0deg);
+            }
+
+            .chevron-button.rotated {
+                display: none;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    #logo-toolbar {
+        font-size: 32px;
+        font-weight: 700;
+        color: $brand-sidebar-color;
+    }
 }

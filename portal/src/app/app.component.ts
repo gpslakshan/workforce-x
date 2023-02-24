@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faUsers, faChartBar, faBuilding, faBolt, faEnvelope, faCalendar, faDollarSign, faSlidersH, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,5 @@ export class AppComponent {
 
   employeesIcon = faUsers;
   chartBarIcon = faChartBar;
-  buildingIcon = faBuilding;
-  thunderIcon = faBolt;
-  mailIcon = faEnvelope;
-  eventIcon = faCalendar;
-  dollarIcon = faDollarSign;
-  settingsIcon = faSlidersH;
-  logoutIcon = faArrowAltCircleLeft;
+  isExpanded: boolean = true;
 }
