@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faUsers, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  employeesIcon = faUsers;
+  chartBarIcon = faChartBar;
+  isExpanded: boolean = true;
 }

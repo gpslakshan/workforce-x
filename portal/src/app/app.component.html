@@ -1,7 +1,68 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Workforce-X</h1>
-        </div>
-    </div>
-</div>
+<mat-sidenav-container autosize>
+    <mat-sidenav mode="side" opened="true" #sidenav>
+        <mat-nav-list class="nav-list">
+
+            <div class="top-content">
+                <mat-list-item class="mb-5">
+                    <span *ngIf="isExpanded" class="menu-item" id="logo" matListItemTitle>Workforce-X</span>
+                    <mat-icon matListItemIcon class="chevron-button" (click)="isExpanded = !isExpanded"
+                        [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>dashboard</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Dashboard</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>people</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Employees</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>apartment</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Departments</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>bolt</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Projects</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>mail</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Messages</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>event</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Events</span>
+                </mat-list-item>
+            </div>
+
+            <div class="bottom-content">
+                <mat-list-item>
+                    <mat-icon matListItemIcon>tune</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Settings</span>
+                </mat-list-item>
+
+                <mat-list-item>
+                    <mat-icon matListItemIcon>logout</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Logout</span>
+                </mat-list-item>
+            </div>
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- rendered content for the current router path -->
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <span *ngIf="!isExpanded" id="logo-toolbar">Workforce-X</span>
+            <span *ngIf="isExpanded" (click)="isExpanded = !isExpanded">
+                <mat-icon style="cursor: pointer;">segment</mat-icon>
+            </span>
+        </mat-toolbar>
+        Main content
+    </mat-sidenav-content>
+</mat-sidenav-container>
