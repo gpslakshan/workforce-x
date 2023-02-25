@@ -19,7 +19,11 @@ mat-sidenav-container {
             justify-content: space-between;
 
             mat-icon {
-                color: white;
+                color: #A9A9A9;
+            }
+
+            .activatedMenuItem {
+                color: white !important;
             }
 
             #logo {
@@ -33,7 +37,7 @@ mat-sidenav-container {
             .menu-item {
                 margin-left: 8px;
                 font-family: $brand-font-family;
-                color: white;
+                color: #A9A9A9;
                 font-weight: 300;
             }
 
