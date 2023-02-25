@@ -9,34 +9,41 @@
                         [ngClass]="{ rotated: isExpanded }">chevron_right</mat-icon>
                 </mat-list-item>
 
-                <mat-list-item>
-                    <mat-icon matListItemIcon>dashboard</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Dashboard</span>
+                <mat-list-item routerLink="/">
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem"
+                        [routerLinkActiveOptions]="{exact: true}">dashboard</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle routerLinkActive="activatedMenuItem"
+                        [routerLinkActiveOptions]="{exact: true}">Dashboard</span>
+                </mat-list-item>
+
+                <mat-list-item routerLink="/employees">
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem">people</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle
+                        routerLinkActive="activatedMenuItem">Employees</span>
+                </mat-list-item>
+
+                <mat-list-item routerLink="/departments">
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem">apartment</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle
+                        routerLinkActive="activatedMenuItem">Departments</span>
+                </mat-list-item>
+
+                <mat-list-item routerLink="/projects">
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem">bolt</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle
+                        routerLinkActive="activatedMenuItem">Projects</span>
                 </mat-list-item>
 
                 <mat-list-item>
-                    <mat-icon matListItemIcon>people</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Employees</span>
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem">mail</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle
+                        routerLinkActive="activatedMenuItem">Messages</span>
                 </mat-list-item>
 
                 <mat-list-item>
-                    <mat-icon matListItemIcon>apartment</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Departments</span>
-                </mat-list-item>
-
-                <mat-list-item>
-                    <mat-icon matListItemIcon>bolt</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Projects</span>
-                </mat-list-item>
-
-                <mat-list-item>
-                    <mat-icon matListItemIcon>mail</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Messages</span>
-                </mat-list-item>
-
-                <mat-list-item>
-                    <mat-icon matListItemIcon>event</mat-icon>
-                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle>Events</span>
+                    <mat-icon matListItemIcon routerLinkActive="activatedMenuItem">event</mat-icon>
+                    <span *ngIf="isExpanded" class="menu-item" matListItemTitle
+                        routerLinkActive="activatedMenuItem">Events</span>
                 </mat-list-item>
             </div>
 
@@ -63,6 +70,6 @@
                 <mat-icon style="cursor: pointer;">segment</mat-icon>
             </span>
         </mat-toolbar>
-        Main content
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
