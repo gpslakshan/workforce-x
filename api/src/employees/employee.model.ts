@@ -1,6 +1,6 @@
 import { AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-@Table({ tableName: 'employees' })
+@Table({ tableName: 'employees', timestamps: false })
 export class Employee extends Model {
 
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })

@@ -70,7 +70,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Employee.prototype, "position_id", void 0);
 Employee = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'employees' })
+    (0, sequelize_typescript_1.Table)({ tableName: 'employees', timestamps: false })
 ], Employee);
 exports.Employee = Employee;
 //# sourceMappingURL=employee.model.js.map

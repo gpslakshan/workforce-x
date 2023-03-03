@@ -19,8 +19,33 @@ let EmployeesController = class EmployeesController {
     constructor(employeesService) {
         this.employeesService = employeesService;
     }
-    getAllEmployees() {
-        return '';
+    async getAllEmployees() {
+        try {
+            console.log("Going to get all employees");
+            const data = await this.employeesService.findAll();
+            if (data) {
+                return {
+                    statusCode: 200,
+                    message: 'Success',
+                    data: data,
+                };
+            }
+            else {
+                return {
+                    statusCode: 400,
+                    message: 'Failed',
+                    data: null
+                };
+            }
+        }
+        catch (error) {
+            console.log("An error occured when getting employees: ", error);
+            return {
+                statusCode: 500,
+                message: 'Failed',
+                error: error
+            };
+        }
     }
     getEmployee(id) {
         return '';
@@ -30,7 +55,7 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Promise)
 ], EmployeesController.prototype, "getAllEmployees", null);
 __decorate([
     (0, common_1.Get)('/:empId'),
