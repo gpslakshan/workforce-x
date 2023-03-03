@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const employee_model_1 = require("./employees/employee.model");
 const employees_module_1 = require("./employees/employees.module");
 let AppModule = class AppModule {
 };
@@ -25,7 +26,7 @@ AppModule = __decorate([
                 username: 'root',
                 password: 'root',
                 database: 'db',
-                models: [],
+                models: [employee_model_1.Employee],
             }),
         ],
         controllers: [app_controller_1.AppController],

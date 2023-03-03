@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Employee } from './employees/employee.model';
 import { EmployeesModule } from './employees/employees.module';
 
 @Module({
@@ -14,7 +15,7 @@ import { EmployeesModule } from './employees/employees.module';
       username: 'root',
       password: 'root',
       database: 'db',
-      models: [],
+      models: [Employee],
     }),
   ],
   controllers: [AppController],

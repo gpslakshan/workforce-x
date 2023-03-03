@@ -1,50 +1,47 @@
-import { AllowNull, AutoIncrement, Column, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import { AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-@Table
+@Table({ tableName: 'employees' })
 export class Employee extends Model {
 
-    @Column
-    @PrimaryKey
-    @AllowNull(false)
-    @AutoIncrement
+    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     emp_id: number;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     first_name: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     last_name: string;
 
-    @Column
+    @Column({ type: DataType.DATE, allowNull: false })
     date_of_birth: Date;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     house_no: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     street: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     city: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     state: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: true })
     postcode: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     email: string;
 
-    @Column
+    @Column({ type: DataType.STRING, allowNull: false })
     mobile: string;
 
-    @Column
+    @Column({ type: DataType.DECIMAL, allowNull: false })
     salary: number;
 
-    @Column
+    @Column({ type: DataType.INTEGER, allowNull: false })
     department_id: number;
 
-    @Column
+    @Column({ type: DataType.INTEGER, allowNull: false })
     position_id: number;
 }
