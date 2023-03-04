@@ -7,6 +7,8 @@ import { EmployeesModule } from './employees/employees.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DepartmentsModule } from './departments/departments.module';
 import { PositionsModule } from './positions/positions.module';
+import { Department } from './departments/department.model';
+import { Position } from './positions/position.model';
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { PositionsModule } from './positions/positions.module';
         username: configService.get('USERNAME'),
         password: process.env.PASSWORD,
         database: configService.get('DATABASE'),
-        models: [Employee],
+        models: [Employee, Department, Position],
       }),
       inject: [ConfigService],
     }),
