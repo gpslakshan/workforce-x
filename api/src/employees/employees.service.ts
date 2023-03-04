@@ -19,4 +19,17 @@ export class EmployeesService {
         }
     }
 
+    async findOne(id: number): Promise<Employee> {
+        try {
+            console.log("Starting to fetch employee details from the DB");
+            return await this.employeeModel.findOne({
+                where: {
+                    emp_id: id,
+                },
+            });
+        } catch (error) {
+            console.log("An error occured when fetching employee details from the DB")
+        }
+    }
+
 }
