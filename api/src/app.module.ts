@@ -4,19 +4,27 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Employee } from './employees/employee.model';
 import { EmployeesModule } from './employees/employees.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     EmployeesModule,
-    SequelizeModule.forRoot({
-      dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '*SAla1997#',
-      database: 'workforce-x',
-      models: [Employee],
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
+    SequelizeModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        dialect: 'mysql',
+        host: configService.get('HOST'),
+        port: +configService.get('PORT'),
+        username: configService.get('USERNAME'),
+        password: process.env.PASSWORD,
+        database: configService.get('DATABASE'),
+        models: [Employee],
+      }),
+      inject: [ConfigService],
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -13,21 +13,29 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const employee_model_1 = require("./employees/employee.model");
 const employees_module_1 = require("./employees/employees.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             employees_module_1.EmployeesModule,
-            sequelize_1.SequelizeModule.forRoot({
-                dialect: 'mysql',
-                host: 'localhost',
-                port: 3306,
-                username: 'root',
-                password: '*SAla1997#',
-                database: 'workforce-x',
-                models: [employee_model_1.Employee],
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
             }),
+            sequelize_1.SequelizeModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: (configService) => ({
+                    dialect: 'mysql',
+                    host: configService.get('HOST'),
+                    port: +configService.get('PORT'),
+                    username: configService.get('USERNAME'),
+                    password: process.env.PASSWORD,
+                    database: configService.get('DATABASE'),
+                    models: [employee_model_1.Employee],
+                }),
+                inject: [config_1.ConfigService],
+            })
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
