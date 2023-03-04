@@ -37,7 +37,7 @@ export class EmployeesService {
         }
     }
 
-    async create(createEmployeeDto: CreateEmployeeDto): Promise<void> {
+    async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
         try {
             console.log("Starting to create and save employee to the DB");
             const deptId = await this.getEmployeeDeptId(createEmployeeDto.department);
@@ -61,10 +61,10 @@ export class EmployeesService {
 
             console.log("createEmployeeData: ", createEmployeeData);
 
-            await this.employeeModel.create(createEmployeeData);
+            return await this.employeeModel.create(createEmployeeData);
 
         } catch (error) {
-            console.log("An error occured while creating & saving the Employee to the DB", error)
+            console.log("An error occured while creating & saving the Employee to the DB", error);
         }
     }
 
