@@ -75,8 +75,21 @@ export class EmployeesController {
         @Body() createEmployeeDto: CreateEmployeeDto,
         @Res() res: Response
     ): Promise<void> {
-        console.log(createEmployeeDto);
-        res.status(HttpStatus.CREATED).send();
+        try {
+            console.log(`Going to create employee: ${createEmployeeDto}`);
+            console.log("employee postcode: ", createEmployeeDto.postcode);
+            await this.employeesService.create(createEmployeeDto);
+            res.status(HttpStatus.CREATED).send({
+                statusCode: HttpStatus.CREATED,
+                message: 'Employee created successfully',
+            });
+        } catch (error) {
+            console.log("An error occured while creating employee", error);
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'Internal Server Error',
+            });
+        }
     }
 
 }
