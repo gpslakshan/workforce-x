@@ -8,7 +8,7 @@ export class CreateEmployeeDto {
     last_name: string;
 
     @IsNotEmpty()
-    @IsDate()
+    // @IsDate()
     date_of_birth: Date;
 
     @IsNotEmpty()
@@ -34,6 +34,12 @@ export class CreateEmployeeDto {
 
     @IsNotEmpty()
     salary: number;
+
+    @IsNotEmpty()
+    department: string;
+
+    @IsNotEmpty()
+    position: string;
 
 }
 

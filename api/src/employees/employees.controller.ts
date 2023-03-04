@@ -1,7 +1,8 @@
-import { Controller, Get, HttpStatus, Param, ParseIntPipe, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Res } from '@nestjs/common';
 import { Employee } from './employee.model';
 import { EmployeesService } from './employees.service';
 import { Response } from 'express';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
 
 
 @Controller('employees')
@@ -40,7 +41,7 @@ export class EmployeesController {
     }
 
     @Get('/:empId')
-    async getEmployee(
+    async getEmployeeById(
         @Param('empId', ParseIntPipe) id: number,
         @Res() res: Response
     ): Promise<void> {
@@ -68,6 +69,15 @@ export class EmployeesController {
                 data: null,
             });
         }
+    }
+
+    @Post()
+    async createEmployee(
+        @Body() createEmployeeDto: CreateEmployeeDto,
+        @Res() res: Response
+    ): Promise<void> {
+        console.log(createEmployeeDto);
+        res.status(HttpStatus.CREATED).send();
     }
 
 }

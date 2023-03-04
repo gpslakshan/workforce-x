@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { Employee } from './employees/employee.model';
 import { EmployeesModule } from './employees/employees.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DepartmentsModule } from './departments/departments.module';
+import { PositionsModule } from './positions/positions.module';
 
 @Module({
   imports: [
@@ -24,7 +26,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         models: [Employee],
       }),
       inject: [ConfigService],
-    })
+    }),
+    DepartmentsModule,
+    PositionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
