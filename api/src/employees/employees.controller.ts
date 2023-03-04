@@ -1,5 +1,4 @@
 import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Res } from '@nestjs/common';
-import { Employee } from './employee.model';
 import { EmployeesService } from './employees.service';
 import { Response } from 'express';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
