@@ -39,6 +39,7 @@ export class EmployeesController {
 
     @Get('/:empId')
     getEmployee(@Param('empId') id: string): any {
+        console.log("Going to get employee info");
         return '';
     }
 
