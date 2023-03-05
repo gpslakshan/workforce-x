@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { DepartmentsService } from 'src/departments/departments.service';
 import { PositionsService } from 'src/positions/positions.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './employee.model';
 
 @Injectable()
@@ -75,7 +76,7 @@ export class EmployeesService {
             console.log(`The department Id of the ${deptName} department is ${deptId}`);
             return deptId;
         } catch (error) {
-            console.log("An error occured while fetching the Departments in the EmployeesService")
+            console.log("An error occured while fetching the Departments in the EmployeesService", error)
         }
     }
 
@@ -86,7 +87,39 @@ export class EmployeesService {
             console.log(`The position Id of the ${position} is ${postId}`);
             return postId;
         } catch (error) {
-            console.log("An error occured while fetching the Positions in the EmployeesService")
+            console.log("An error occured while fetching the Positions in the EmployeesService", error)
+        }
+    }
+
+    async update(updateEmployeeDto: UpdateEmployeeDto, id: number) {
+        try {
+            console.log(`Starting to update employee of id ${id} in the database`);
+            const deptId = await this.getEmployeeDeptId(updateEmployeeDto.department);
+            const positionId = await this.getEmployeePositionId(updateEmployeeDto.position);
+
+            const updateEmployeeData = {
+                first_name: updateEmployeeDto.first_name,
+                last_name: updateEmployeeDto.last_name,
+                date_of_birth: new Date(updateEmployeeDto.date_of_birth),
+                house_no: updateEmployeeDto.house_no,
+                street: updateEmployeeDto.street,
+                city: updateEmployeeDto.city,
+                state: updateEmployeeDto.state,
+                postcode: updateEmployeeDto.postcode,
+                email: updateEmployeeDto.email,
+                mobile: updateEmployeeDto.mobile,
+                salary: updateEmployeeDto.salary,
+                department_id: deptId,
+                position_id: positionId
+            };
+
+            return await this.employeeModel.update(updateEmployeeData, {
+                where: {
+                    emp_id: id,
+                }
+            });
+        } catch (error) {
+            console.log(`An error occured while updating the employee of id ${id}`, error)
         }
     }
 

@@ -1,7 +1,8 @@
-import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { Response } from 'express';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 
 
 @Controller('employees')
@@ -77,7 +78,6 @@ export class EmployeesController {
     ): Promise<void> {
         try {
             console.log(`Going to create employee: ${createEmployeeDto}`);
-            console.log("employee postcode: ", createEmployeeDto.postcode);
             const employee = await this.employeesService.create(createEmployeeDto);
             if (employee) {
                 res.status(HttpStatus.CREATED).send({
@@ -85,13 +85,42 @@ export class EmployeesController {
                     message: 'Employee created successfully',
                 });
             } else {
-                res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
-                    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-                    message: 'Internal Server Error',
+                res.status(HttpStatus.BAD_REQUEST).send({
+                    statusCode: HttpStatus.BAD_REQUEST,
+                    message: 'Bad Request',
                 });
             }
         } catch (error) {
             console.log("An error occured while creating employee", error);
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'Internal Server Error',
+            });
+        }
+    }
+
+    @Put('/:empId')
+    async updateEmployeeById(
+        @Param('empId', ParseIntPipe) id: number,
+        @Body() updateEmployeeDto: UpdateEmployeeDto,
+        @Res() res: Response
+    ) {
+        try {
+            console.log(`Going to update employee of empId ${id}`);
+            const updateRes = await this.employeesService.update(updateEmployeeDto, id);
+            if (updateRes) {
+                res.status(HttpStatus.OK).send({
+                    statusCode: HttpStatus.OK,
+                    message: 'Employee updated successfully',
+                });
+            } else {
+                res.status(HttpStatus.BAD_REQUEST).send({
+                    statusCode: HttpStatus.BAD_REQUEST,
+                    message: 'Bad Request',
+                });
+            }
+        } catch (error) {
+            console.log("An error occured while updating employee", error);
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
                 message: 'Internal Server Error',
