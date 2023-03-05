@@ -25,6 +25,7 @@ import { Position } from './positions/position.model';
         username: configService.get('USERNAME'),
         password: process.env.PASSWORD,
         database: configService.get('DATABASE'),
+        timezone: "+05:30",
         models: [Employee, Department, Position],
       }),
       inject: [ConfigService],

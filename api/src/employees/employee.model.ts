@@ -1,6 +1,6 @@
 import { AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-@Table({ tableName: 'employees', timestamps: false })
+@Table({ tableName: 'employees', timestamps: true, createdAt: "created_at", updatedAt: "updated_at" })
 export class Employee extends Model {
 
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
@@ -44,4 +44,7 @@ export class Employee extends Model {
 
     @Column({ type: DataType.INTEGER, allowNull: false })
     position_id: number;
+
+    @Column({ type: DataType.TINYINT, allowNull: true })
+    is_deleted: number;
 }

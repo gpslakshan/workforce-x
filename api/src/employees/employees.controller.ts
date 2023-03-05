@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res } from '@nestjs/common';
 import { EmployeesService } from './employees.service';
 import { Response } from 'express';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
@@ -127,5 +127,35 @@ export class EmployeesController {
             });
         }
     }
+
+    @Delete('/:empId')
+    async deleteEmployeeById(
+        @Param('empId', ParseIntPipe) id: number,
+        @Res() res: Response
+    ) {
+        try {
+            console.log(`Going to delete employee of empId ${id}`);
+            const deleteRes = await this.employeesService.delete(id);
+            if (deleteRes) {
+                res.status(HttpStatus.OK).send({
+                    statusCode: HttpStatus.OK,
+                    message: 'Employee deleted successfully',
+                });
+            } else {
+                res.status(HttpStatus.BAD_REQUEST).send({
+                    statusCode: HttpStatus.BAD_REQUEST,
+                    message: 'Bad Request',
+                });
+            }
+        } catch (error) {
+            console.log("An error occured while deleting employee", error);
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: 'Internal Server Error',
+            });
+        }
+    }
+
+
 
 }

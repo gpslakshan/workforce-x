@@ -19,7 +19,11 @@ export class EmployeesService {
     async findAll(): Promise<Employee[]> {
         try {
             console.log("Going to fetch all the employees from the DB");
-            return await this.employeeModel.findAll();
+            return await this.employeeModel.findAll({
+                where: {
+                    is_deleted: 0
+                }
+            });
         } catch (error) {
             console.log("An error occuered while fetching the employees.", error);
         }
@@ -31,6 +35,7 @@ export class EmployeesService {
             return await this.employeeModel.findOne({
                 where: {
                     emp_id: id,
+                    is_deleted: 0,
                 },
             });
         } catch (error) {
@@ -57,7 +62,7 @@ export class EmployeesService {
                 mobile: createEmployeeDto.mobile,
                 salary: createEmployeeDto.salary,
                 department_id: deptId,
-                position_id: positionId
+                position_id: positionId,
             };
 
             console.log("createEmployeeData: ", createEmployeeData);
@@ -110,7 +115,7 @@ export class EmployeesService {
                 mobile: updateEmployeeDto.mobile,
                 salary: updateEmployeeDto.salary,
                 department_id: deptId,
-                position_id: positionId
+                position_id: positionId,
             };
 
             return await this.employeeModel.update(updateEmployeeData, {
@@ -120,6 +125,19 @@ export class EmployeesService {
             });
         } catch (error) {
             console.log(`An error occured while updating the employee of id ${id}`, error)
+        }
+    }
+
+    async delete(id: number) {
+        try {
+            console.log(`Starting to delete employee of id ${id} from the database`);
+            return await this.employeeModel.update({ is_deleted: 1 }, {
+                where: {
+                    emp_id: id,
+                }
+            });
+        } catch (error) {
+            console.log(`An error occured while deleting the employee of id ${id}`, error)
         }
     }
 
