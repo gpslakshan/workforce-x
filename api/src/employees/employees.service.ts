@@ -53,6 +53,7 @@ export class EmployeesService {
                 first_name: createEmployeeDto.first_name,
                 last_name: createEmployeeDto.last_name,
                 date_of_birth: new Date(createEmployeeDto.date_of_birth),
+                gender: createEmployeeDto.gender,
                 house_no: createEmployeeDto.house_no,
                 street: createEmployeeDto.street,
                 city: createEmployeeDto.city,

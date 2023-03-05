@@ -16,6 +16,9 @@ export class Employee extends Model {
     date_of_birth: Date;
 
     @Column({ type: DataType.STRING, allowNull: false })
+    gender: string;
+
+    @Column({ type: DataType.STRING, allowNull: false })
     house_no: string;
 
     @Column({ type: DataType.STRING, allowNull: false })
