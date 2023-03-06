@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EmployeesComponent implements OnInit {
 
   employees: any[] = [];
-  displayedColumns: string[] = ['emp_id', 'first_name', 'last_name', 'date_of_birth', 'email', 'mobile', 'city', 'department', 'position', 'salary'];
+  displayedColumns: string[] = ['emp_id', 'first_name', 'last_name', 'date_of_birth', 'email', 'mobile', 'department', 'position', 'salary', 'actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
