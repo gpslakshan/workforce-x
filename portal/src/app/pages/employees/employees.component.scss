@@ -30,3 +30,7 @@ table {
 // th {
 //     width: 25%;
 // }
+
+::ng-deep .search-bar-container .mat-form-field-label-wrapper {
+    top: -1.2em;
+}
