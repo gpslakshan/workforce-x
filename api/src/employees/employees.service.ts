@@ -5,25 +5,30 @@ import { PositionsService } from 'src/positions/positions.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './employee.model';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class EmployeesService {
 
     constructor(
-        @InjectModel(Employee)
-        private employeeModel: typeof Employee,
+        @InjectModel(Employee) private employeeModel: typeof Employee,
+        private sequelize: Sequelize,
         private departmentsService: DepartmentsService,
         private positionsService: PositionsService
     ) { }
 
-    async findAll(): Promise<Employee[]> {
+    async findAll(): Promise<any> {
         try {
             console.log("Going to fetch all the employees from the DB");
-            return await this.employeeModel.findAll({
-                where: {
-                    is_deleted: 0
-                }
-            });
+            // return await this.employeeModel.findAll({
+            //     where: {
+            //         is_deleted: 0
+            //     }
+            // });
+            const result = await this.sequelize.query('CALL get_employees()');
+            console.log("All employees result: ", result);
+            return result;
+
         } catch (error) {
             console.log("An error occuered while fetching the employees.", error);
         }

@@ -8,6 +8,7 @@ import { Employee } from './employee.model';
 import { EmployeesController } from './employees.controller';
 import { EmployeesService } from './employees.service';
 
+
 @Module({
   imports: [SequelizeModule.forFeature([Employee, Department, Position])],
   controllers: [EmployeesController],
