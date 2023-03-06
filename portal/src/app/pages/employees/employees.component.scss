@@ -10,11 +10,11 @@
 .page-url {
     font-family: $brand-font-family;
     font-size: 12px;
-    color: $brand-text-color;
+    color: $brand-primary-color;
 }
 
 #active-url {
-    color: $brand-primary-color;
+    color: $brand-accent-color;
 }
 
 table {
