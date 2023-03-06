@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from './employees.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-employees',
@@ -9,10 +11,13 @@ import { EmployeesService } from './employees.service';
 })
 export class EmployeesComponent implements OnInit {
 
-  employees = []
+  employees: any[] = [];
+  displayedColumns: string[] = ['emp_id', 'first_name', 'last_name', 'date_of_birth', 'email', 'mobile', 'city', 'state', 'department_id', 'position_id'];
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private http: HttpClient,
     private empService: EmployeesService
   ) { }
 
@@ -23,12 +28,24 @@ export class EmployeesComponent implements OnInit {
   getEmployees() {
     this.empService.getEmployees().subscribe({
       next: (res) => {
-        console.log(res);
+        console.log("Employees fetched from the API", res);
+        this.dataSource = new MatTableDataSource(res['data']);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       error: (err) => {
         console.log("An error occured while fetching employees", err);
       }
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

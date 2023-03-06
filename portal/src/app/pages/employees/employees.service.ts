@@ -9,7 +9,7 @@ export class EmployeesService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployees() {
+  getEmployees(): Observable<Object> {
     return this.http.get('http://localhost:3000/employees');
   }
 }
