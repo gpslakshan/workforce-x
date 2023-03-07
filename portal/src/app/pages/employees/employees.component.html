@@ -20,7 +20,7 @@
             </mat-form-field>
         </div>
         <div class="col-md-2 d-flex justify-content-end align-items-center">
-            <button mat-raised-button color="primary">Create Employee</button>
+            <button mat-raised-button color="primary" (click)="navigateToCreateEmployee()">Create Employee</button>
         </div>
     </div>
 
@@ -81,10 +81,10 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
                         <td mat-cell *matCellDef="let row">
-                            <button mat-icon-button color="primary">
+                            <button mat-icon-button color="primary" (click)="navigateToViewEmployee(row.emp_id)">
                                 <mat-icon>remove_red_eye</mat-icon>
                             </button>
-                            <button mat-icon-button color="accent">
+                            <button mat-icon-button color="accent" (click)="navigateToEditEmployee(row.emp_id)">
                                 <mat-icon>edit</mat-icon>
                             </button>
                             <button mat-icon-button color="warn" (click)="deleteEmployee(row.emp_id)">

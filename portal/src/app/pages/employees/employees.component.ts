@@ -3,7 +3,7 @@ import { EmployeesService } from './employees.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -20,7 +20,8 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private empService: EmployeesService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +61,18 @@ export class EmployeesComponent implements OnInit {
         console.log(err);
       }
     });
+  }
+
+  navigateToCreateEmployee() {
+    this.router.navigate(['create-employee'], { relativeTo: this.route });
+  }
+
+  navigateToViewEmployee(id: number) {
+    this.router.navigate([`view-employee/${id}`], { relativeTo: this.route });
+  }
+
+  navigateToEditEmployee(id: number) {
+    this.router.navigate([`edit-employee/${id}`], { relativeTo: this.route });
   }
 
 }
