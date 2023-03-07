@@ -20,6 +20,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ViewEmployeeComponent } from './pages/employees/view-employee/view-employee.component';
+import { EditEmployeeComponent } from './pages/employees/edit-employee/edit-employee.component';
+import { CreateEmployeeComponent } from './pages/employees/create-employee/create-employee.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { MatButtonModule } from '@angular/material/button';
     DashboardComponent,
     EmployeesComponent,
     DepartmentsComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ViewEmployeeComponent,
+    EditEmployeeComponent,
+    CreateEmployeeComponent
   ],
   imports: [
     BrowserModule,
