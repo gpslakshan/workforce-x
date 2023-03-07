@@ -12,15 +12,18 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-md-10 search-bar-container">
+        <div class="col-xxl-10 col-xl-9 col-md-9 search-bar-container">
             <mat-form-field class="w-100">
                 <mat-label>Search</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
                 <mat-icon matPrefix class="me-3">search</mat-icon>
             </mat-form-field>
         </div>
-        <div class="col-md-2 d-flex justify-content-end align-items-center">
-            <button mat-raised-button color="primary" (click)="navigateToCreateEmployee()">Create Employee</button>
+        <div class="col-xxl-2 col-xl-3 col-md-3 d-flex justify-content-end align-items-center">
+            <button mat-raised-button color="primary" (click)="navigateToCreateEmployee()">
+                <mat-icon class="me-1">person_add</mat-icon>
+                Create Employee
+            </button>
         </div>
     </div>
 
