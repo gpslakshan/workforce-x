@@ -3,6 +3,7 @@ import { EmployeesService } from './employees.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -18,7 +19,8 @@ export class EmployeesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private empService: EmployeesService
+    private empService: EmployeesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
