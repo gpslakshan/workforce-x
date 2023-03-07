@@ -12,6 +12,9 @@ export class UpdateEmployeeDto {
     date_of_birth: Date;
 
     @IsNotEmpty()
+    gender: string;
+
+    @IsNotEmpty()
     house_no: string;
 
     @IsNotEmpty()

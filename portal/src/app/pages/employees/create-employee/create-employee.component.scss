@@ -1,0 +1,39 @@
+@import "../../../../styles.scss";
+
+.page-title {
+    font-family: $brand-font-family;
+    font-size: 24px;
+    font-weight: 700;
+    color: $brand-heading-color;
+}
+
+.page-url {
+    font-family: $brand-font-family;
+    font-size: 12px;
+    color: $brand-primary-color;
+}
+
+#active-url {
+    color: $brand-accent-color;
+}
+
+.subtitle {
+    font-family: $brand-font-family;
+    font-size: 18px;
+    font-weight: 500;
+    color: $brand-heading-color;
+}
+
+label {
+    font-family: $brand-font-family;
+    font-weight: 400;
+}
+
+.mat-radio-button {
+    font-family: $brand-font-family;
+    font-weight: 300;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}

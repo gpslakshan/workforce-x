@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12 page-title">
+            Create Employee
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12 page-url">
+            Employees &#62; <span id="active-url">Create Employee</span>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 subtitle">
+            Personal Details
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Firstname</mat-label>
+                <input matInput placeholder="Ex: John" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Lastname</mat-label>
+                <input matInput placeholder="Ex: Doe" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div class="col-md-4 d-flex flex-column">
+            <label class="mb-1">Gender</label>
+            <mat-radio-group aria-label="Select an option" class="example-radio-group">
+                <mat-radio-button value="Male">Male</mat-radio-button>
+                <mat-radio-button value="Female">Female</mat-radio-button>
+                <mat-radio-button value="Other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Ex: nick.williams@email.com" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Mobile</mat-label>
+                <input matInput placeholder="Ex: 7819225333" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 subtitle">
+            Address Details
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Address Line1</mat-label>
+                <input matInput placeholder="Ex: 790" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Address Line2</mat-label>
+                <input matInput placeholder="Ex: Maple St" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Ex: Houston" required>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>State</mat-label>
+                <mat-select required>
+                    <mat-option *ngFor="let state of states" [value]="state">
+                        {{state}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Postcode</mat-label>
+                <input matInput placeholder="Ex: 77001">
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 subtitle">
+            Employment Details
+        </div>
+    </div>
+
+</div>
