@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEmployeeComponent implements OnInit {
 
+  states = ['TX', 'CA', 'NY', 'WA', 'OR', 'IL', 'MA'];
+
   constructor() { }
 
   ngOnInit(): void {

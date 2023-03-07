@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
@@ -8,7 +9,10 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
-import { RouterModule } from "@angular/router";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { CreateEmployeeComponent } from "./create-employee/create-employee.component";
 import { EditEmployeeComponent } from "./edit-employee/edit-employee.component";
 import { EmployeesRoutingModule } from "./employees-routing.module";
@@ -33,6 +37,10 @@ import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
         MatSortModule,
         MatInputModule,
         MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatSelectModule,
         EmployeesRoutingModule
     ],
 })
