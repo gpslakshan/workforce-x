@@ -18,6 +18,7 @@ import { EditEmployeeComponent } from "./edit-employee/edit-employee.component";
 import { EmployeesRoutingModule } from "./employees-routing.module";
 import { EmployeesComponent } from "./employees.component";
 import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
         MatNativeDateModule,
         MatRadioModule,
         MatSelectModule,
-        EmployeesRoutingModule
+        EmployeesRoutingModule,
+        ReactiveFormsModule
     ],
 })
 export class EmployeesModule {
