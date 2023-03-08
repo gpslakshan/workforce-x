@@ -42,4 +42,8 @@ export class CreateEmployeeComponent implements OnInit {
     }
   }
 
+  resetForm() {
+    this.createEmployeeForm.reset();
+  }
+
 }
