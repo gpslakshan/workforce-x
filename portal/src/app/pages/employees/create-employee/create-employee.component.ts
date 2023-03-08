@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmployeesService } from '../employees.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -14,7 +16,10 @@ export class CreateEmployeeComponent implements OnInit {
   createEmployeeForm: FormGroup;
   submitted: boolean = false;
 
-  constructor() { }
+  constructor(
+    private empService: EmployeesService,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.createEmployeeForm = new FormGroup({
@@ -39,6 +44,28 @@ export class CreateEmployeeComponent implements OnInit {
     this.submitted = true;
     if (this.createEmployeeForm.valid) {
       console.log("create employee form: ", this.createEmployeeForm.value);
+      this.empService.createEmployee(this.createEmployeeForm.value).subscribe(
+        res => {
+          console.log("Employee created successfully: ", res);
+          this._snackBar.open("Employee created successfully", "OK", {
+            duration: 2000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            // panelClass: ['snackbar-fail']
+          });
+          // this.resetForm();
+          // this.submitted = false;
+        },
+        err => {
+          console.log("An unexpected error occured when creating the employee", err);
+          this._snackBar.open("An error occured when creating the employee", "OK", {
+            duration: 2000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right',
+            // panelClass: ['snackbar-fail']
+          });
+        }
+      );
     }
   }
 

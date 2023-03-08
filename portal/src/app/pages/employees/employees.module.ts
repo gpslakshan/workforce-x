@@ -19,6 +19,7 @@ import { EmployeesRoutingModule } from "./employees-routing.module";
 import { EmployeesComponent } from "./employees.component";
 import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { ReactiveFormsModule } from "@angular/forms";
         MatRadioModule,
         MatSelectModule,
         EmployeesRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
 })
 export class EmployeesModule {

@@ -14,6 +14,10 @@ export class EmployeesService {
   }
 
   deleteEmployee(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:3000/employees/${id}`)
+    return this.http.delete(`http://localhost:3000/employees/${id}`);
+  }
+
+  createEmployee(empData: any): Observable<any> {
+    return this.http.post(`http://localhost:3000/employees`, empData);
   }
 }

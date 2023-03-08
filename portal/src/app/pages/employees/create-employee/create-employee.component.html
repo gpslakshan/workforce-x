@@ -64,7 +64,7 @@
             <div class="col-md-4">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Mobile</mat-label>
-                    <input matInput placeholder="Ex: 7819225333" required formControlName="mobile">
+                    <input matInput placeholder="Ex: 7819225333" required formControlName="mobile" maxlength="10">
                     <mat-error
                         *ngIf="(createEmployeeForm.get('mobile').invalid && createEmployeeForm.get('mobile').touched) || submitted">Mobile
                         is required.</mat-error>

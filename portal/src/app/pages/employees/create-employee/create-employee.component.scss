@@ -37,3 +37,13 @@ label {
 .mat-radio-button~.mat-radio-button {
     margin-left: 16px;
 }
+
+::ng-deep .snackbar-sucess {
+    background: $brand-success-color !important;
+    color: white !important;
+}
+
+::ng-deep .snackbar-fail {
+    background: $brand-danger-color !important;
+    color: white !important;
+}
