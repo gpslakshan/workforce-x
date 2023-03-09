@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employees',
@@ -21,7 +22,8 @@ export class EmployeesComponent implements OnInit {
   constructor(
     private empService: EmployeesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -55,10 +57,20 @@ export class EmployeesComponent implements OnInit {
     this.empService.deleteEmployee(id).subscribe({
       next: (res) => {
         console.log("Employee deleted.", res);
+        this._snackBar.open("Employee Deleted successfully", "OK", {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
         this.getEmployees();
       },
       error: (err) => {
         console.log(err);
+        this._snackBar.open("An error occured while deleting the employee", "OK", {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right',
+        });
       }
     });
   }

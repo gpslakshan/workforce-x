@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeesService } from '../employees.service';
 
@@ -38,9 +38,11 @@ export class CreateEmployeeComponent implements OnInit {
       department: new FormControl('', [Validators.required]),
       position: new FormControl('', [Validators.required]),
     });
+
+
   }
 
-  onSubmit() {
+  onSubmit(formDirective: FormGroupDirective) {
     this.submitted = true;
     if (this.createEmployeeForm.valid) {
       console.log("create employee form: ", this.createEmployeeForm.value);
@@ -53,8 +55,9 @@ export class CreateEmployeeComponent implements OnInit {
             horizontalPosition: 'right',
             // panelClass: ['snackbar-fail']
           });
-          // this.resetForm();
-          // this.submitted = false;
+          formDirective.resetForm();
+          this.resetForm();
+          this.submitted = false;
         },
         err => {
           console.log("An unexpected error occured when creating the employee", err);
