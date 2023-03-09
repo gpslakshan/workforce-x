@@ -11,8 +11,8 @@ import { EmployeesService } from '../employees.service';
 export class CreateEmployeeComponent implements OnInit {
 
   states = ['TX', 'CA', 'NY', 'WA', 'OR', 'IL', 'MA'];
-  departments = ['Marketing', 'Sales', 'Finance', 'Human Resources', 'Information Technology', 'Operations', 'Software Development', 'Quality Assurance'];
-  designations = ['Software Engineer', 'Director', 'HR Manager', 'IT Manager', 'Project Manager', 'QA Engineer', 'Financial Manager', 'Marketing Manager', 'Sales Manager'];
+  departments: any[];
+  designations: any[];
   createEmployeeForm: FormGroup;
   submitted: boolean = false;
 
@@ -39,7 +39,33 @@ export class CreateEmployeeComponent implements OnInit {
       position: new FormControl('', [Validators.required]),
     });
 
+    this.getAllDepartments();
+    this.getAllDesignations();
 
+  }
+
+  getAllDepartments() {
+    this.empService.getAllDepartments().subscribe({
+      next: (res) => {
+        console.log("Get all departments response: ", res);
+        this.departments = res;
+      },
+      error: (err) => {
+        console.log("An unexpected error occured while fetching all the departments ", err);
+      }
+    });
+  }
+
+  getAllDesignations() {
+    this.empService.getAllDesignations().subscribe({
+      next: (res) => {
+        console.log("Get all designations response: ", res);
+        this.designations = res;
+      },
+      error: (err) => {
+        console.log("An unexpected error occured while fetching all the designations ", err);
+      }
+    });
   }
 
   onSubmit(formDirective: FormGroupDirective) {
