@@ -15,6 +15,7 @@ export class CreateEmployeeComponent implements OnInit {
   designations: any[];
   createEmployeeForm: FormGroup;
   submitted: boolean = false;
+  isCreateBtnDisable = true;
 
   constructor(
     private empService: EmployeesService,
@@ -41,7 +42,7 @@ export class CreateEmployeeComponent implements OnInit {
 
     this.getAllDepartments();
     this.getAllDesignations();
-
+    this.onFormValueChange();
   }
 
   getAllDepartments() {
@@ -68,6 +69,14 @@ export class CreateEmployeeComponent implements OnInit {
     });
   }
 
+  onFormValueChange() {
+    this.createEmployeeForm.valueChanges.subscribe(
+      (value) => {
+        this.isCreateBtnDisable = false;
+      }
+    );
+  }
+
   onSubmit(formDirective: FormGroupDirective) {
     this.submitted = true;
     if (this.createEmployeeForm.valid) {
@@ -84,6 +93,7 @@ export class CreateEmployeeComponent implements OnInit {
           formDirective.resetForm();
           this.resetForm();
           this.submitted = false;
+          this.isCreateBtnDisable = true;
         },
         err => {
           console.log("An unexpected error occured when creating the employee", err);
