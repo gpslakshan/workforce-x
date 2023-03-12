@@ -54,6 +54,11 @@ button:disabled {
     color: white !important;
 }
 
+.left-main-container {
+    display: flex;
+    justify-content: center;
+}
+
 .profile-pic-div {
     position: relative;
     width: 170px;
