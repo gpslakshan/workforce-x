@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeesService } from '../employees.service';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import { getDownloadURL } from '@firebase/storage';
 
 @Component({
   selector: 'app-create-employee',
@@ -82,10 +83,12 @@ export class CreateEmployeeComponent implements OnInit {
     );
   }
 
-  onSubmit(formDirective: FormGroupDirective) {
+  async onSubmit(formDirective: FormGroupDirective) {
     this.submitted = true;
     if (this.createEmployeeForm.valid) {
-      console.log("create employee form: ", this.createEmployeeForm.value);
+      await this.uploadProfilePicToFirebase();
+      console.log("employee create data: ", { ...this.createEmployeeForm.value, imageUrl: this.downloadableURL });
+      // console.log("create employee form: ", this.createEmployeeForm.value);
       this.empService.createEmployee(this.createEmployeeForm.value).subscribe(
         res => {
           console.log("Employee created successfully: ", res);
@@ -95,7 +98,6 @@ export class CreateEmployeeComponent implements OnInit {
             horizontalPosition: 'right',
             // panelClass: ['snackbar-fail']
           });
-          this.uploadProfilePicToFirebase();
           formDirective.resetForm();
           this.resetForm();
           this.submitted = false;
@@ -138,13 +140,21 @@ export class CreateEmployeeComponent implements OnInit {
     }
   }
 
-  async uploadProfilePicToFirebase() {
+  async uploadProfilePicToFirebase(): Promise<void> {
     const filePath = `${this.basePath}/${this.choosedImage.name}`;
     const task: AngularFireUploadTask = this.storage.upload(filePath, this.choosedImage);
-    (await task).ref.getDownloadURL().then(url => {
-      this.downloadableURL = url;
-      console.log(this.downloadableURL);
-    });
+
+    // (await task).ref.getDownloadURL().then(url => {
+    //   this.downloadableURL = url;
+    //   console.log(this.downloadableURL);
+    // });
+
+    const url = await (await task).ref.getDownloadURL();
+    this.downloadableURL = url;
+
   }
+
+
+
 
 }
