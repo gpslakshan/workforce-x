@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeesService } from '../employees.service';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-create-employee',
@@ -16,10 +17,14 @@ export class CreateEmployeeComponent implements OnInit {
   createEmployeeForm: FormGroup;
   submitted: boolean = false;
   isCreateBtnDisable = true;
+  choosedImage: any;
+  basePath = '/profile-images';
+  downloadableURL = '';
 
   constructor(
     private empService: EmployeesService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private storage: AngularFireStorage
   ) { }
 
   ngOnInit(): void {
@@ -90,6 +95,7 @@ export class CreateEmployeeComponent implements OnInit {
             horizontalPosition: 'right',
             // panelClass: ['snackbar-fail']
           });
+          this.uploadProfilePicToFirebase();
           formDirective.resetForm();
           this.resetForm();
           this.submitted = false;
@@ -105,11 +111,40 @@ export class CreateEmployeeComponent implements OnInit {
           });
         }
       );
+
     }
   }
 
+
   resetForm() {
     this.createEmployeeForm.reset();
+  }
+
+  onFileChange(event: any) {
+    console.log(event.target.files[0]);
+    this.choosedImage = event.target.files[0];
+    const img = document.getElementById('profilePic');
+    if (this.choosedImage) {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', () => {
+        const imgPreview = reader.result as string;
+        img.setAttribute('src', imgPreview);
+      });
+
+      reader.readAsDataURL(this.choosedImage);
+
+
+    }
+  }
+
+  async uploadProfilePicToFirebase() {
+    const filePath = `${this.basePath}/${this.choosedImage.name}`;
+    const task: AngularFireUploadTask = this.storage.upload(filePath, this.choosedImage);
+    (await task).ref.getDownloadURL().then(url => {
+      this.downloadableURL = url;
+      console.log(this.downloadableURL);
+    });
   }
 
 }

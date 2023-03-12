@@ -18,6 +18,20 @@
         </div>
 
         <div class="row mt-3">
+            <div class="col-md-3">
+                Profile Pic Upload
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-3 profile-pic-div" appUploadProfPic>
+                <img src="assets/user.png" alt="employee image" id="profilePic">
+                <input type="file" name="" id="file" (change)="onFileChange($event)">
+                <label for="file" id="uploadBtn">Choose Photo</label>
+            </div>
+        </div>
+
+        <div class="row mt-3">
             <div class="col-md-4">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Firstname</mat-label>
@@ -189,7 +203,7 @@
             </div>
         </div>
 
-        <div class="row mt-5 d-flex justify-content-between">
+        <div class="row mt-5 mb-5 d-flex justify-content-between">
             <div class="col-md-2">
                 <button mat-raised-button color="warn" class="w-100" type="button" (click)="resetForm()">Reset</button>
             </div>

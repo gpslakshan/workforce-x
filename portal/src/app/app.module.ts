@@ -13,6 +13,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -32,8 +39,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatIconModule,
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
-  providers: [],
+  providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
