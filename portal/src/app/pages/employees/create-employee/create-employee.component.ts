@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeesService } from '../employees.service';
@@ -19,6 +19,7 @@ export class CreateEmployeeComponent implements OnInit {
   submitted: boolean = false;
   isCreateBtnDisable = true;
   choosedImage: any;
+  @ViewChild('profilePic') profilePic: ElementRef;
   basePath = '/profile-images';
   downloadableURL = '';
 
@@ -88,8 +89,9 @@ export class CreateEmployeeComponent implements OnInit {
     if (this.createEmployeeForm.valid) {
       await this.uploadProfilePicToFirebase();
       console.log("employee create data: ", { ...this.createEmployeeForm.value, imageUrl: this.downloadableURL });
+      const empData = { ...this.createEmployeeForm.value, imageUrl: this.downloadableURL };
       // console.log("create employee form: ", this.createEmployeeForm.value);
-      this.empService.createEmployee(this.createEmployeeForm.value).subscribe(
+      this.empService.createEmployee(empData).subscribe(
         res => {
           console.log("Employee created successfully: ", res);
           this._snackBar.open("Employee created successfully", "OK", {
@@ -100,6 +102,7 @@ export class CreateEmployeeComponent implements OnInit {
           });
           formDirective.resetForm();
           this.resetForm();
+          this.profilePic.nativeElement.src = 'assets/user.png';
           this.submitted = false;
           this.isCreateBtnDisable = true;
         },
@@ -125,13 +128,14 @@ export class CreateEmployeeComponent implements OnInit {
   onFileChange(event: any) {
     console.log(event.target.files[0]);
     this.choosedImage = event.target.files[0];
-    const img = document.getElementById('profilePic');
+    // const img = document.getElementById('profilePic');
     if (this.choosedImage) {
       const reader = new FileReader();
 
       reader.addEventListener('load', () => {
         const imgPreview = reader.result as string;
-        img.setAttribute('src', imgPreview);
+        // img.setAttribute('src', imgPreview);
+        this.profilePic.nativeElement.src = imgPreview
       });
 
       reader.readAsDataURL(this.choosedImage);

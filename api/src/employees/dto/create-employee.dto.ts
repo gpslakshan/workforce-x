@@ -45,5 +45,8 @@ export class CreateEmployeeDto {
     @IsNotEmpty()
     position: string;
 
+    @IsOptional()
+    imageUrl: string;
+
 }
 

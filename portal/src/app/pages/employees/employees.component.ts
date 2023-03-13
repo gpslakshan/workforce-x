@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from './employees.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,6 +35,7 @@ export class EmployeesComponent implements OnInit {
       next: (res) => {
         console.log("Employees fetched from the API", res);
         this.dataSource = new MatTableDataSource(res['data']);
+        this.sort.sort(({ id: 'emp_id', start: 'asc' }) as MatSortable);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },

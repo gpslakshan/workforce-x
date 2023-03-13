@@ -69,6 +69,7 @@ export class EmployeesService {
                 salary: createEmployeeDto.salary,
                 department_id: deptId,
                 position_id: positionId,
+                imageUrl: createEmployeeDto.imageUrl
             };
 
             console.log("createEmployeeData: ", createEmployeeData);
