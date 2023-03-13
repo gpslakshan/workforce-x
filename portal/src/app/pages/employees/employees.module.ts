@@ -18,13 +18,17 @@ import { EditEmployeeComponent } from "./edit-employee/edit-employee.component";
 import { EmployeesRoutingModule } from "./employees-routing.module";
 import { EmployeesComponent } from "./employees.component";
 import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UploadProfPicDirective } from "./shared/upload-profpic.directive";
 
 @NgModule({
     declarations: [
         EmployeesComponent,
         ViewEmployeeComponent,
         EditEmployeeComponent,
-        CreateEmployeeComponent
+        CreateEmployeeComponent,
+        UploadProfPicDirective
     ],
     imports: [
         RouterModule,
@@ -41,7 +45,9 @@ import { ViewEmployeeComponent } from "./view-employee/view-employee.component";
         MatNativeDateModule,
         MatRadioModule,
         MatSelectModule,
-        EmployeesRoutingModule
+        EmployeesRoutingModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
 })
 export class EmployeesModule {

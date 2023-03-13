@@ -50,4 +50,7 @@ export class Employee extends Model {
 
     @Column({ type: DataType.TINYINT, allowNull: true })
     is_deleted: number;
+
+    @Column({ type: DataType.STRING, allowNull: false })
+    imageUrl: string;
 }
